@@ -1,10 +1,12 @@
 {
-    "name": "AbdulmatinSanni/APIx",
+    "name": "abdulmatinsanni/api-x",
     "type": "library",
     "description": "An unofficial laravel page for SmartSMSSolutions' APIx. The Package that helps deliver SMS to phone numbers on Do Not Disturb (DND).",
     "keywords": [
         "AbdulmatinSanni",
-        "APIx"
+        "APIx",
+        "Laravel",
+        "SMS"
     ],
     "homepage": "https://github.com/AbdulmatinSanni/APIx",
     "license": "MIT License",
