@@ -66,13 +66,18 @@ class APIx
     private static $message;
 
     /**
+     * Request Response.
+     * @var ResponseInterface
+     */
+    private static $response;
+
+    /**
      * Initializes APIx Configurations.
      */
     public static function initialize()
     {
         self::$api = config('api-x.api');
         self::$apiToken = config('api-x.api_token');
-        self::$senderName = config('api-x.sender_name');
         self::$islogMessagesEnabled = config('api-x.is_log_messages_enabled');
         self::$logFilePath = config('api-x.log_file_path');
         self::$isFakeSmsEnabled = config('api-x.is_fake_sms_enabled');
@@ -150,7 +155,7 @@ class APIx
             $client = new Client();
             $response = $client->request('POST', self::$api, [
                 'form_params' => [
-                    'sender' => self::$senderName,
+                    'sender' => self::$senderName ?? config('api-x.sender_name'),
                     'to' => self::$recipient,
                     'message' => self::$message,
                     'type' => 0,
@@ -162,7 +167,8 @@ class APIx
             dd($e->getMessage());
         }
 
-        return self::formatResponse($response);
+        self::$response = (string)$response->getBody();
+        return self::$response;
     }
 
     /**
@@ -212,6 +218,17 @@ class APIx
         $responseMessage = self::responseMessage($responseCode);
 
         return $responseMessage;
+    }
+
+    /**
+     * Gets Formatted Request Response.
+     *
+     * @param ResponseInterface $response
+     * @return mixed
+     */
+    public function getFormattedResponse(ResponseInterface $response)
+    {
+        return self::formatResponse($response);
     }
 
     /**
