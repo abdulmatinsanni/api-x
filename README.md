@@ -12,6 +12,8 @@ Below is the file structure of this package.
 
 ```
 src/
+    Channels/
+        SmartSMSChannel.php
     Commands/
         Log/
             ClearCommand.php
@@ -20,6 +22,9 @@ src/
         api-x.php
     Controllers/
         LogController.php
+    Exceptions/
+        CouldNotSendNotification.php
+        InvalidConfiguration.php
     Facades/
         APIxFacade.php
     resources/
@@ -27,7 +32,6 @@ src/
             log.blade.php
     APIx.php
     APIxServiceProvider.php
-tests/
 ```
 
 
@@ -64,9 +68,11 @@ SMARTSMSSOLUTIONS_SENDER_NAME=sendernamehere
 ```
 
 ## Usage
-### In controller:
+### In Controllers:
+Below is an example of API-x usage in controllers.
 ``` php
 ...
+
 use APIx;
 
 class SMSController extends Controller
@@ -79,6 +85,71 @@ class SMSController extends Controller
             ->send();
         
         return $response;
+    }
+}
+```
+### For Notifications:
+
+#### Setting up in model:
+```php
+...
+
+class User extends Model
+{
+    use Notifiable;
+
+    public function routeNotificationForSmartSMS($notification)
+    {
+        return $this->phone_column;
+    }
+}
+
+```
+
+#### Setting up in notifications
+
+```php
+
+...
+
+use AbdulmatinSanni\APIx\APIxMessage;
+use AbdulmatinSanni\APIx\Channels\SmartSMSChannel;
+
+class DemoNotification extends Notification
+{
+    use Queueable;
+    
+    ...
+    
+    public function via($notifiable)
+    {
+        return [SmartSMSChannel::class];
+    }
+
+    ...
+    
+    public function toSmartSMS($notifiable)
+    {
+        return (new APIxMessage())
+                    ->from($this->from)
+                    ->message($this->message);
+    }
+}
+
+```
+
+#### Setting up in controllers
+
+```php
+
+...
+
+public class NotificationsController extends Controller
+{
+    public function notify()
+    {
+        $user = User::firstOrFail();
+        $user->notify(new DemoNotification("SarahFound", "Hi, you are invited to our seminar!!!!!"));
     }
 }
 ```
@@ -98,7 +169,7 @@ $ php artisan api-x:log
 
 Showing the last logged sms:
 ``` bash
-$ php artisan api-x:log --last
+$ php artisan api-x:log --latest
 ```
 
 Limiting the entries of log to be displayed:

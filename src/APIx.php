@@ -4,6 +4,7 @@ namespace AbdulmatinSanni\APIx;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 
 use Illuminate\Support\Facades\Storage;
@@ -142,11 +143,11 @@ class APIx
         }
 
         if (self::$isFakeSmsEnabled && self::$islogMessagesEnabled) {
-            return "Messages has been logged";
+            return new Response(200, [], "Messages has been logged");
         }
 
         if (self::$isFakeSmsEnabled && ! self::$islogMessagesEnabled) {
-            return "Messages Wasn't Sent of Logged";
+            return new Response(406, [], "Messages wasn't sent or logged. Kindly enable sending or logging in your .env file.");
         }
 
         $response = null;
