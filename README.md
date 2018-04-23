@@ -36,7 +36,7 @@ tests/
 You can install the package via composer:
 
 ``` bash
-$ composer require abdulmatin-sanni/api-x
+$ composer require abdulmatinsanni/api-x
 ```
 
 Add the service provider (only required on Laravel 5.4 or lower):
@@ -137,17 +137,17 @@ If you discover any security related issues, please email me@abdulmatinsanni.com
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/abdulmatin-sanni/api-x.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/abdulmatinsanni/api-x.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/abdulmatin-sanni/api-x/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/abdulmatin-sanni/api-x.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/abdulmatin-sanni/api-x.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/abdulmatin-sanni/api-x.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/abdulmatinsanni/api-x/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/abdulmatinsanni/api-x.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/abdulmatinsanni/api-x.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/abdulmatinsanni/api-x.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/abdulmatin-sanni/api-x
-[link-travis]: https://travis-ci.org/abdulmatin-sanni/api-x
-[link-scrutinizer]: https://scrutinizer-ci.com/g/abdulmatin-sanni/api-x/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/abdulmatin-sanni/api-x
-[link-downloads]: https://packagist.org/packages/abdulmatin-sanni/api-x
+[link-packagist]: https://packagist.org/packages/abdulmatinsanni/api-x
+[link-travis]: https://travis-ci.org/abdulmatinsanni/api-x
+[link-scrutinizer]: https://scrutinizer-ci.com/g/abdulmatinsanni/api-x/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/abdulmatinsanni/api-x
+[link-downloads]: https://packagist.org/packages/abdulmatinsanni/api-x
 [link-author]: https://github.com/https://github.com/abdulmatinsanni
 [link-contributors]: ../../contributors
