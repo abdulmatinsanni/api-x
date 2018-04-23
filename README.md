@@ -7,9 +7,9 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-```Abdulmatin Sanni``` ```https://github.com/abdulmatinsanni``` ```www.abdulmatinsanni.com``` ```me@abdulmatinsanni.com``` ```abdulmatin-sanni``` ```api-x``` ```An unofficial laravel page for SmartSMSSolutions' API-x. The Package that helps deliver SMS to phone numbers on Do Not Disturb (DND)```
+```Abdulmatin Sanni``` ```https://github.com/abdulmatinsanni``` ```www.abdulmatinsanni.com``` ```me@abdulmatinsanni.com``` ```abdulmatin-sanni``` ```api-x``` ```An unofficial laravel package for SmartSMSSolutions' API-x. The Package that helps deliver SMS to phone numbers on Do Not Disturb (DND)```
 
-An unofficial laravel page for SmartSMSSolutions' API-x. The Package that helps deliver SMS to phone numbers on Do Not Disturb (DND)
+An unofficial laravel package for SmartSMSSolutions' API-x. The Package that helps deliver SMS to phone numbers on Do Not Disturb (DND).
 
 ## Structure
 
