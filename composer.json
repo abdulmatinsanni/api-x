@@ -1,0 +1,60 @@
+{
+    "name": "AbdulmatinSanni/APIx",
+    "type": "library",
+    "description": "An unofficial laravel page for SmartSMSSolutions' APIx. The Package that helps deliver SMS to phone numbers on Do Not Disturb (DND).",
+    "keywords": [
+        "AbdulmatinSanni",
+        "APIx"
+    ],
+    "homepage": "https://github.com/AbdulmatinSanni/APIx",
+    "license": "MIT License",
+    "authors": [
+        {
+            "name": "Abdulmatin Sanni",
+            "email": "me@abdulmatinsanni.com",
+            "homepage": "www.abdulmatinsanni.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "~5.6|~7.0",
+        "guzzlehttp/guzzle" : "~6.0",
+        "illuminate/support": "~5.1",
+        "illuminate/routing": "~5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : ">=5.4.3",
+        "squizlabs/php_codesniffer": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "AbdulmatinSanni\\APIx\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AbdulmatinSanni\\APIx\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "AbdulmatinSanni\\APIx\\src\\APIxServiceProvider"
+            ],
+            "aliases": {
+                "APIx": "AbdulmatinSanni\\APIx\\src\\Facades\\APIx"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
