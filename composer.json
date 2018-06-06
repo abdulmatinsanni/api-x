@@ -45,14 +45,14 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.0.1"
         },
         "laravel": {
             "providers": [
-                "AbdulmatinSanni\\APIx\\src\\APIxServiceProvider"
+                "AbdulmatinSanni\\APIx\\APIxServiceProvider"
             ],
             "aliases": {
-                "APIx": "AbdulmatinSanni\\APIx\\src\\Facades\\APIx"
+                "APIx": "AbdulmatinSanni\\APIx\\Facades\\APIx"
             }
         }
     },
