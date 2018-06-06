@@ -168,8 +168,7 @@ class APIx
             dd($e->getMessage());
         }
 
-        self::$response = (string)$response->getBody();
-        return self::$response;
+        return $response;
     }
 
     /**

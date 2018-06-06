@@ -16,6 +16,7 @@ class SmartSMSChannel
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
+     * @return bool
      * @throws \AbdulmatinSanni\APIx\Exceptions\InvalidConfiguration
      * @throws \AbdulmatinSanni\APIx\Exceptions\CouldNotSendNotification
      */
@@ -29,7 +30,7 @@ class SmartSMSChannel
         $notification = $notification->toSmartSMS($notifiable);
 
         if (! $recipient || ! $notification) {
-            return;
+            return false;
         }
 
         $response = APIx::to($recipient)
@@ -40,5 +41,7 @@ class SmartSMSChannel
         if ($response->getStatusCode() !== 200) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($response);
         }
+
+        return true;
     }
 }
