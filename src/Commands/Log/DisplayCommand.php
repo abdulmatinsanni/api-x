@@ -13,8 +13,8 @@ class DisplayCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'api-x:log 
-        {--l|latest : Displays only the last log entry} 
+    protected $signature = 'api-x:log
+        {--l|latest : Displays only the last log entry}
         {--t|limit= : Specifies the number of logs to display}';
 
     /**
@@ -41,41 +41,37 @@ class DisplayCommand extends Command
      */
     public function handle()
     {
-        $log = null;
+        $messageLog = null;
         $logPath = config('api-x.log_file_path');
         $logEntryDelimiter = config('api-x.log_entry_delimiter');
 
+        $headers = ['From', 'To', 'Message', 'Timestamp'];
+
         try {
-            $log = Storage::get($logPath);
+            $messageLog = Storage::get($logPath);
         } catch (FileNotFoundException $exception) {
             Storage::put($logPath, null);
         }
 
+        $messages = json_decode($messageLog, true);
+
         if ($this->option('latest')) {
-            $logs = explode(config('api-x.log_entry_delimiter'), $log)[0];
-            $this->info($logs);
-            return;
+            $messages = [$messages[count($messages) - 1]];
         }
 
-        $limit = $this->option('limit');
-
-        if ($limit) {
-            $delimitedlogs = null;
-            $logs = explode(config('api-x.log_entry_delimiter'), $log);
-            $logLimit = ($limit < count($logs)) ? $limit : count($logs);
-
-            for ($i = 0; $i < $logLimit; $i++) {
-                $delimitedlogs .= <<< EOF
-                
-            $logs[$i]
-            $logEntryDelimiter
-EOF;
-            }
-
-            $this->info($delimitedlogs);
-            return;
+        if ($this->option('limit')) {
+            $messages = array_slice(
+                $messages,
+                count($messages) - $this->option('limit')
+            );
         }
 
-        $this->info($log);
+        if (! is_array($messages)) {
+            $this->error("No message in log.");
+
+            return false ;
+        }
+
+        $this->table($headers, $messages);
     }
 }

@@ -168,8 +168,7 @@ class APIx
             dd($e->getMessage());
         }
 
-        self::$response = (string)$response->getBody();
-        return self::$response;
+        return $response;
     }
 
     /**
@@ -250,25 +249,35 @@ class APIx
      */
     public static function logMessages()
     {
-        $logMessage = null;
-        $logEntryDelimiter = config('api-x.log_entry_delimiter');
+        $messagesToLog = [];
 
         foreach (explode(',', self::$recipient) as $recipient) {
-            $senderName = self::$senderName;
+            $senderName = self::$senderName ?? config('api-x.sender_name');
             $message = self::$message;
             $timestamp = Carbon::now()->toDateTimeString();
 
-            $logMessage .= <<< EOF
-            
-            From: $senderName
-            To: $recipient
-            Date: $timestamp
-            
-            $message
-            $logEntryDelimiter
-EOF;
+            array_push($messagesToLog, [
+                'from' => $senderName,
+                'to' => $recipient,
+                'message' => self::$message,
+                'timestamp' => Carbon::now()->toDateTimeString()
+            ]);
         }
 
-        Storage::prepend(self::$logFilePath, $logMessage);
+        if (Storage::exists(self::$logFilePath)) {
+            $messageLog = Storage::get(self::$logFilePath);
+            $logMessages = json_decode($messageLog, true);
+
+            if (is_array($logMessages)) {
+                foreach($messagesToLog as $messageToLog) {
+                    array_push($logMessages, $messageToLog);
+                }
+                Storage::put(self::$logFilePath, json_encode($logMessages));
+            } else {
+                Storage::put(self::$logFilePath, json_encode($messagesToLog));
+            }
+        } else {
+            Storage::put(self::$logFilePath, json_encode($messagesToLog));
+        }
     }
 }

@@ -11,27 +11,35 @@ An unofficial laravel package for SmartSMSSolutions' API-x. The Package that hel
 Below is the file structure of this package.
 
 ```
-src/
-    Channels/
-        SmartSMSChannel.php
-    Commands/
-        Log/
-            ClearCommand.php
-            DisplayCommand.php
-    config/
-        api-x.php
-    Controllers/
-        LogController.php
-    Exceptions/
-        CouldNotSendNotification.php
-        InvalidConfiguration.php
-    Facades/
-        APIxFacade.php
-    resources/
-        views/
-            log.blade.php
-    APIx.php
-    APIxServiceProvider.php
+\---src
+    |   APIx.php
+    |   APIxMessage.php
+    |   APIxServiceProvider.php
+    |
+    +---Channels
+    |       SmartSMSChannel.php
+    |
+    +---Commands
+    |   \---Log
+    |           ClearCommand.php
+    |           DisplayCommand.php
+    |
+    +---config
+    |       api-x.php
+    |
+    +---Controllers
+    |       LogController.php
+    |
+    +---Exceptions
+    |       CouldNotSendNotification.php
+    |       InvalidConfiguration.php
+    |
+    +---Facades
+    |       APIxFacade.php
+    |
+    \---resources
+        \---views
+                log.blade.php
 ```
 
 
